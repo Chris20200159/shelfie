@@ -1,8 +1,8 @@
 import React from 'react';
-import Product from './Product';
+import Product from '../Product/Product';
 import './Dashboard.css';
 
-const Dashboard () {
+const Dashboard = () => {
   return (
     <div className="Dashboard">
       <Product/>

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Form.css';
 
-class Form extends Component {
+class Form extends React.Component {
   constructor(){
     super();
     this.state = {
