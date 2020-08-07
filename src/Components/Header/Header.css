@@ -1,0 +1,17 @@
+.Header {
+  height: 20vh;
+  width: 100vw;
+  background-color: #AB2A19;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  
+ }
+
+ .logo {
+   height: 50%;
+   width: 80%;
+   
+ }
