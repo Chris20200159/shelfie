@@ -1,5 +1,6 @@
 import React from 'react';
 import './Product.css';
+import { withRouter } from 'react-router-dom';
 
 const Product = (props) => {
   return (
@@ -8,8 +9,9 @@ const Product = (props) => {
       <button 
       onClick={() => props.deleteProduct(props.item.product_id)}
       >Delete</button>
+      <button onClick={() => props.history.push(`/edit/${props.item.product_id}`)}>Edit</button>
     </div>
   );
 }
 
-export default Product;
+export default withRouter(Product);

@@ -1,18 +1,45 @@
 import React from 'react';
 import './Form.css';
+import axios from 'axios';
 
 class Form extends React.Component {
   constructor(){
     super();
     this.state = {
-      name: '',
+      productName: '',
       price: 0,
-      imgurl: ''
+      imageUrl: '',
+      edit: false
     }
   }
 
+componentDidMount = () => {
+  console.log(this.props)
+  if(this.props.match.params.id){
+    this.setState({
+      edit: true
+    })
+  }
 
+}
 
+handleChange = (e) => {
+  this.setState({[e.target.name]: e.target.value});
+};
+
+addInventory = () => {
+  axios.post('/api/products', this.state)
+  .then((res) => {
+    this.props.history.push('/')
+  })
+};
+
+saveInventory = () => {
+  axios.put(`/api/products/${this.props.match.params.id}`, this.state)
+  .then((res) => {
+    this.props.history.push('/')
+  })
+}
 
   render(){
     console.log(this.state)
@@ -20,15 +47,15 @@ class Form extends React.Component {
       <div class="Form">
         {/* <div class="form_img_preview" style="background-image"></div> */}
         <p>Image URL:</p>
-        <input type="text" value/>
+        <input onChange={this.handleChange} name='imageUrl' type="text" value={this.state.imageUrl}/>
         <p>Product Name:</p>
-        <input type="text" value/>
+        <input onChange={this.handleChange} name='productName' type="text" value={this.state.productName}/>
         <p>Price:</p>
-        <input type="text" pattern="[0-9]*" value="0"/>
+        <input onChange={this.handleChange} name='price' type="text" pattern="[0-9]*" value={this.state.price}/>
       </div>
         <div class="form-button-box">
           <button>Cancel</button>
-          <button>Add To Inventory</button>
+          {this.state.edit ? <button onClick={this.saveInventory}>Save</button> : <button onClick={this.addInventory}>Add To Inventory</button>}
         </div>
 
     </div>
